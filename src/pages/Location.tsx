@@ -1,24 +1,29 @@
 
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Clock } from 'lucide-react';
 import LocationCard from '../components/LocationCard';
 import MapView from '../components/MapView';
+import Header from '../components/Header';
 
 const Location: React.FC = () => {
   return (
-    <div className="container mx-auto max-w-md p-4">
-      <div className="flex items-center mb-6">
-        <Link to="/" className="mr-4">
-          <ArrowLeft className="text-truckmate-green" />
-        </Link>
-        <h1 className="text-2xl font-bold text-truckmate-green">Where to Park?</h1>
+    <div className="container mx-auto max-w-md p-4 pb-24">
+      <Header greeting="Location" name="Insights" />
+      
+      <div className="bg-truckmate-teal/10 p-4 rounded-xl mb-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Clock size={18} className="text-truckmate-teal" />
+          <h3 className="font-medium text-truckmate-green">AI Location Insights</h3>
+        </div>
+        <p className="text-sm text-truckmate-brown">
+          Based on current traffic and events, Farmers Market (5th & Pine) shows highest potential. Expected peak: 12 PM - 2 PM.
+        </p>
       </div>
       
       <MapView />
       
       <div className="mb-4">
-        <h2 className="text-lg font-semibold text-truckmate-green mb-2">Today's Top Locations</h2>
+        <h2 className="text-lg font-semibold text-truckmate-green mb-2">Recommended Spots</h2>
         
         <LocationCard 
           name="Farmers Market" 
@@ -41,15 +46,6 @@ const Location: React.FC = () => {
           isLoyaltyHotspot={false}
           weatherWarning="Potential light rain around 6 PM" 
         />
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4">
-        <button className="tm-button bg-white text-truckmate-brown border border-truckmate-brown">
-          See More
-        </button>
-        <button className="tm-button bg-truckmate-teal">
-          Confirm Location
-        </button>
       </div>
     </div>
   );

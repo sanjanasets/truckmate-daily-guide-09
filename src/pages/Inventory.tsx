@@ -3,6 +3,7 @@ import { Package, AlertTriangle } from 'lucide-react';
 import Header from '../components/Header';
 import InventoryItem from '../components/InventoryItem';
 import InventoryInsights from '../components/InventoryInsights';
+import InventoryVisuals from '../components/InventoryVisuals';
 
 // For demo purposes, we'll use this data
 // In a real app, this would come from a backend
@@ -80,6 +81,7 @@ const Inventory = () => {
     <div className="container mx-auto max-w-md p-4 pb-24">
       <Header greeting="Stock check" name="What's in store?" />
       
+      <InventoryVisuals />
       <InventoryInsights />
       
       {lowStockItems.length > 0 && (

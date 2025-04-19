@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Home, MapPin, ChefHat, BarChart, Package } from 'lucide-react';
+import { Home, MapPin, BarChart, Package } from 'lucide-react';
 
 const BottomNav = () => {
   const location = useLocation();
@@ -23,10 +23,6 @@ const BottomNav = () => {
           <Link to="/location" className={`flex flex-col items-center p-2 ${isActive('/location')}`}>
             <MapPin size={24} />
             <span className="text-xs mt-1">Location</span>
-          </Link>
-          <Link to="/menu" className={`flex flex-col items-center p-2 ${isActive('/menu')}`}>
-            <ChefHat size={24} />
-            <span className="text-xs mt-1">Menu</span>
           </Link>
           <Link to="/inventory" className={`flex flex-col items-center p-2 ${isActive('/inventory')}`}>
             <Package size={24} />

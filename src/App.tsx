@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Location from "./pages/Location";
-import Menu from "./pages/Menu";
 import Growth from "./pages/Growth";
 import Inventory from "./pages/Inventory";
 import NotFound from "./pages/NotFound";
@@ -24,7 +22,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/location" element={<Location />} />
-            <Route path="/menu" element={<Menu />} />
             <Route path="/growth" element={<Growth />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="*" element={<NotFound />} />

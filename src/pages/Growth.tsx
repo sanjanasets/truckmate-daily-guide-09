@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { ArrowLeft, TrendingUp, Instagram, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GrowthCard from '../components/GrowthCard';
 import GrowthChart from '../components/GrowthChart';
+import Header from '../components/Header';
 
 const Growth: React.FC = () => {
   const weeklyData = [
@@ -17,7 +17,9 @@ const Growth: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto max-w-md p-4">
+    <div className="container mx-auto max-w-md p-4 pb-24">
+      <Header greeting="Let's grow" name="your business!" />
+      
       <div className="flex items-center mb-6">
         <Link to="/" className="mr-4">
           <ArrowLeft className="text-truckmate-green" />

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Clock } from 'lucide-react';
 import LocationCard from '../components/LocationCard';
@@ -8,7 +7,7 @@ import Header from '../components/Header';
 const Location: React.FC = () => {
   return (
     <div className="container mx-auto max-w-md p-4 pb-24">
-      <Header greeting="Location" name="Insights" />
+      <Header greeting="Ready to roll?" name="Let's find your spot" />
       
       <div className="bg-truckmate-teal/10 p-4 rounded-xl mb-4">
         <div className="flex items-center gap-2 mb-2">

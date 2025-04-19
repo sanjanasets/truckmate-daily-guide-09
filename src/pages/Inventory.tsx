@@ -1,19 +1,11 @@
-
 import React from 'react';
 import { Package, AlertTriangle, Clock } from 'lucide-react';
 import Header from '../components/Header';
 
 const Inventory = () => {
-  const inventory = [
-    { name: 'Chicken', quantity: '15 lbs', status: 'low', expiryDate: '2025-04-22' },
-    { name: 'Tortillas', quantity: '200 pcs', status: 'good', expiryDate: '2025-04-25' },
-    { name: 'Tomatoes', quantity: '10 lbs', status: 'good', expiryDate: '2025-04-21' },
-    { name: 'Avocados', quantity: '20 pcs', status: 'critical', expiryDate: '2025-04-20' },
-  ];
-
   return (
     <div className="container mx-auto max-w-md p-4 pb-24">
-      <Header greeting="Inventory" name="Management" />
+      <Header greeting="Stock check" name="What's in store?" />
       
       <div className="bg-truckmate-teal/10 p-4 rounded-xl mb-6">
         <div className="flex items-start gap-3">

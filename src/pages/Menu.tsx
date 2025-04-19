@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { Sun, TrendingUp, Package, Clock } from 'lucide-react';
-import FoodCard from '../components/FoodCard';
 import Header from '../components/Header';
+import FoodCard from '../components/FoodCard';
 
 const Menu: React.FC = () => {
   return (
     <div className="container mx-auto max-w-md p-4 pb-24">
-      <Header greeting="Menu" name="Planning" />
+      <Header greeting="What's cooking" name="in the kitchen?" />
       
       <div className="bg-truckmate-teal/10 p-4 rounded-xl mb-6">
         <div className="flex items-center gap-2 mb-2">

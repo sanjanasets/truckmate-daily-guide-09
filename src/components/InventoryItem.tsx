@@ -1,108 +1,118 @@
 
 import React, { useState } from 'react';
-import { Package, Plus, Minus, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface InventoryItemProps {
+  id: number;
   name: string;
   quantity: number;
   unit: string;
-  category: string;
   expiryDate: string;
+  category: string;
   minThreshold: number;
   onUpdateQuantity: (newQuantity: number) => void;
+  onUpdateItem: (updatedItem: any) => void;
 }
 
 const InventoryItem: React.FC<InventoryItemProps> = ({
+  id,
   name,
   quantity,
   unit,
-  category,
   expiryDate,
+  category,
   minThreshold,
   onUpdateQuantity,
+  onUpdateItem,
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [tempQuantity, setTempQuantity] = useState(quantity);
+  const [localQuantity, setLocalQuantity] = useState(quantity);
+  const [editing, setEditing] = useState(false);
 
-  const getStatusColor = () => {
-    const ratio = quantity / minThreshold;
-    if (ratio <= 0.5) return 'bg-red-100 text-red-800';
-    if (ratio <= 1) return 'bg-yellow-100 text-yellow-800';
-    return 'bg-green-100 text-green-800';
-  };
+  const [localItem, setLocalItem] = useState({
+    name,
+    unit,
+    expiryDate,
+    minThreshold,
+    category
+  });
 
-  const handleConfirmUpdate = () => {
-    onUpdateQuantity(tempQuantity);
-    setIsEditing(false);
-  };
-
-  const adjustQuantity = (amount: number) => {
-    setTempQuantity(Math.max(0, tempQuantity + amount));
+  const handleSave = () => {
+    setEditing(false);
+    onUpdateQuantity(localQuantity);
+    onUpdateItem({ id, ...localItem });
   };
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm mb-3">
-      <div className="flex justify-between items-start mb-2">
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-full bg-truckmate-teal/10 flex items-center justify-center flex-shrink-0">
-            <Package size={20} className="text-truckmate-teal" />
-          </div>
-          <div>
-            <h3 className="font-medium text-truckmate-green">{name}</h3>
-            <span className="text-xs text-truckmate-brown">
-              Category: {category}
-            </span>
-          </div>
-        </div>
-        <div className={cn('px-3 py-1 rounded-full text-xs', getStatusColor())}>
-          {quantity <= minThreshold / 2 ? 'Critical' : 
-           quantity <= minThreshold ? 'Low' : 'Good'}
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center mt-3">
-        <div className="flex items-center gap-4">
-          {isEditing ? (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => adjustQuantity(-1)}
-                className="p-1 rounded-full hover:bg-gray-100"
-              >
-                <Minus size={16} />
-              </button>
-              <span className="text-sm font-medium w-12 text-center">
-                {tempQuantity} {unit}
-              </span>
-              <button
-                onClick={() => adjustQuantity(1)}
-                className="p-1 rounded-full hover:bg-gray-100"
-              >
-                <Plus size={16} />
-              </button>
-              <button
-                onClick={handleConfirmUpdate}
-                className="ml-2 p-1 rounded-full text-green-600 hover:bg-green-50"
-              >
-                <Check size={16} />
-              </button>
-            </div>
-          ) : (
-            <span className="text-sm font-medium">
-              {quantity} {unit}
-            </span>
-          )}
-        </div>
+    <div className="bg-white p-4 rounded-xl shadow-sm space-y-2">
+      <div className="flex justify-between items-center">
+        {editing ? (
+          <input
+            className="border p-1 rounded text-sm w-1/2"
+            value={localItem.name}
+            onChange={e => setLocalItem({ ...localItem, name: e.target.value })}
+          />
+        ) : (
+          <h4 className="font-semibold">{name}</h4>
+        )}
         <button
-          onClick={() => setIsEditing(!isEditing)}
-          className="text-xs px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          onClick={() => (editing ? handleSave() : setEditing(true))}
+          className="text-sm text-truckmate-teal font-medium"
         >
-          {isEditing ? 'Cancel' : 'Update'}
+          {editing ? 'Save' : 'Edit'}
         </button>
       </div>
 
-      <div className="mt-2 text-xs text-truckmate-brown">
-        Expires: {new Date(expiryDate).toLocaleDateString()}
+      <div className="grid grid-cols-2 gap-2 text-sm text-truckmate-brown">
+        <div>
+          Quantity:{' '}
+          <input
+            type="number"
+            value={localQuantity}
+            onChange={e => setLocalQuantity(Number(e.target.value))}
+            className="border rounded p-1 w-20"
+          />
+        </div>
+        <div>
+          Unit:{' '}
+          {editing ? (
+            <input
+              value={localItem.unit}
+              onChange={e => setLocalItem({ ...localItem, unit: e.target.value })}
+              className="border rounded p-1 w-20"
+            />
+          ) : (
+            unit
+          )}
+        </div>
+        <div>
+          Expiry:{' '}
+          {editing ? (
+            <input
+              type="date"
+              value={localItem.expiryDate}
+              onChange={e =>
+                setLocalItem({ ...localItem, expiryDate: e.target.value })
+              }
+              className="border rounded p-1"
+            />
+          ) : (
+            expiryDate
+          )}
+        </div>
+        <div>
+          Min Threshold:{' '}
+          {editing ? (
+            <input
+              type="number"
+              value={localItem.minThreshold}
+              onChange={e =>
+                setLocalItem({ ...localItem, minThreshold: Number(e.target.value) })
+              }
+              className="border rounded p-1 w-20"
+            />
+          ) : (
+            minThreshold
+          )}
+        </div>
       </div>
     </div>
   );

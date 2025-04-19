@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import SummaryCard from '../components/SummaryCard';
 import NavigationButton from '../components/NavigationButton';
-import { MapPin, ChefHat, BarChart } from 'lucide-react';
+import { MapPin, ChefHat, BarChart, Droplets } from 'lucide-react';
 
 const Home: React.FC = () => {
   const getGreeting = () => {
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         />
       </div>
       
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <NavigationButton 
           title="Where to Park?" 
           icon={MapPin} 
@@ -63,8 +63,11 @@ const Home: React.FC = () => {
         />
       </div>
       
-      <div className="mt-6 p-4 bg-white rounded-2xl shadow-sm">
-        <h3 className="text-sm font-medium text-truckmate-green mb-2">AI Insight</h3>
+      <div className="p-4 bg-white rounded-2xl shadow-sm">
+        <div className="flex items-center gap-2 mb-2">
+          <Droplets size={18} className="text-truckmate-teal" />
+          <h3 className="text-sm font-medium text-truckmate-green">AI Insight</h3>
+        </div>
         <p className="text-sm text-truckmate-brown">
           Based on today's forecast (sunny, 75°F) and location, you might sell 15% more beverages than usual. Consider stocking up!
         </p>

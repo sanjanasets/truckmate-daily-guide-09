@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, TrendingUp, Instagram, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GrowthCard from '../components/GrowthCard';
 import GrowthChart from '../components/GrowthChart';
@@ -25,23 +25,32 @@ const Growth: React.FC = () => {
         <h1 className="text-2xl font-bold text-truckmate-green">Growth Strategy</h1>
       </div>
       
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold text-truckmate-green mb-2">Today's Growth Ideas</h2>
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-truckmate-green mb-3">Today's Growth Ideas</h2>
         
         <GrowthCard 
           title="Trending Dish: Street Corn"
           content="Street corn is trending in your area. Consider adding it as a side to increase average order value."
+          icon={TrendingUp}
         />
         
         <GrowthCard 
           title="Social Media Caption"
           content="'Beat the heat with our refreshing mango smoothies! Perfect companion for our spicy tacos 🔥🥭 #FoodTruckFriday #MangoPerfection'"
+          icon={Instagram}
+        />
+        
+        <GrowthCard 
+          title="Recent Customer Feedback"
+          content="'The veggie sliders were amazing! Would love to see more vegetarian options.' - Emily K. (Yesterday)"
+          icon={MessageSquare}
+          bgColor="bg-truckmate-teal/10"
         />
       </div>
       
       <GrowthChart data={weeklyData} />
       
-      <button className="tm-button bg-truckmate-brown w-full">
+      <button className="tm-button bg-truckmate-brown text-white w-full mt-4">
         Download Full Report
       </button>
     </div>

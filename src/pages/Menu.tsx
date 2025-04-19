@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Sun, TrendingUp, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FoodCard from '../components/FoodCard';
 
@@ -15,15 +15,31 @@ const Menu: React.FC = () => {
       </div>
       
       <div className="p-4 rounded-xl bg-white mb-6 shadow-sm">
-        <h2 className="text-sm text-truckmate-brown mb-1">AI Recommendation</h2>
-        <p className="text-truckmate-green">
-          Based on today's <span className="font-semibold">warm weather</span>, <span className="font-semibold">past sales data</span>,
-          and your <span className="font-semibold">current inventory</span>, here's what might sell well:
+        <h2 className="text-sm text-truckmate-brown mb-2">AI Recommendation</h2>
+        <p className="text-truckmate-green mb-3">
+          Based on today's data, here's what might sell well:
         </p>
+        
+        <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex items-center gap-1 bg-truckmate-teal/10 text-truckmate-teal px-3 py-1 rounded-full">
+            <Sun size={14} />
+            <span>Warm weather</span>
+          </div>
+          
+          <div className="flex items-center gap-1 bg-truckmate-brown/10 text-truckmate-brown px-3 py-1 rounded-full">
+            <TrendingUp size={14} />
+            <span>Past sales data</span>
+          </div>
+          
+          <div className="flex items-center gap-1 bg-truckmate-gold/10 text-truckmate-gold px-3 py-1 rounded-full">
+            <Package size={14} />
+            <span>Current inventory</span>
+          </div>
+        </div>
       </div>
       
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold text-truckmate-green mb-2">Featured Menu Items</h2>
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-truckmate-green mb-3">Featured Menu Items</h2>
         
         <FoodCard 
           name="Chicken Tacos" 
@@ -48,7 +64,7 @@ const Menu: React.FC = () => {
         <button className="tm-button bg-white text-truckmate-brown border border-truckmate-brown">
           Add to Shopping List
         </button>
-        <button className="tm-button bg-truckmate-gold">
+        <button className="tm-button bg-truckmate-gold text-white">
           Confirm Menu
         </button>
       </div>
